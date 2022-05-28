@@ -19,20 +19,22 @@ namespace WindowsFormsApp1
         protected string password;
         protected string loginAcc;
 
+        //+
         public User() 
         {
         }
 
+        //+
         public void authorization(string login, string password)
         {
-            string script = "SELECT * FROM Authorization WHERE login = @log AND password = @pass;";
+            string authorize_script = "SELECT * FROM Authorization, Users WHERE login = @log AND password = @pass;";
 
             DataBase DB = new DataBase();
             DB.connection.Open();
 
             DataTable table = new DataTable();
-            MySqlDataAdapter adapter = new MySqlDataAdapter(script, DB.connection);
-            DB.command = new MySqlCommand(script, DB.connection);
+            MySqlDataAdapter adapter = new MySqlDataAdapter(authorize_script, DB.connection);
+            DB.command = new MySqlCommand(authorize_script, DB.connection);
             DB.command.Parameters.Add("@log", MySqlDbType.VarChar).Value = login;
             DB.command.Parameters.Add("@pass", MySqlDbType.VarChar).Value = password;
 
@@ -43,38 +45,34 @@ namespace WindowsFormsApp1
             {
                 DB.connection.Close();
                 MessageBox.Show("Ошибка");
+                return;
             }
 
-            string Authorization_script = "SELECT * FROM Users WHERE user_id = @ID;";
-
-            DataTable Authorize_table = new DataTable();
-            MySqlDataAdapter Authorize_adapter = new MySqlDataAdapter(Authorization_script, DB.connection);
-            DB.command2 = new MySqlCommand(Authorization_script, DB.connection);
-            DB.command2.Parameters.Add("@ID", MySqlDbType.Int32).Value = Convert.ToInt32(table.Rows[0][0]);
-
-            Authorize_adapter.SelectCommand = DB.command2;
-            Authorize_adapter.Fill(Authorize_table);
-
-            this.ID = Convert.ToInt32(Authorize_table.Rows[0][0]);
+            this.ID = Convert.ToInt32(table.Rows[0][0]);
             this.loginAcc = login;
             this.password = password;
-            this.surname = Convert.ToString(Authorize_table.Rows[0][2]);
-            this.name = Convert.ToString(Authorize_table.Rows[0][3]);
-            this.patronymic = Convert.ToString(Authorize_table.Rows[0][4]);
-            this.role = Convert.ToString(Authorize_table.Rows[0][5]);
+            this.surname = Convert.ToString(table.Rows[0][5]);
+            this.name = Convert.ToString(table.Rows[0][6]);
+            this.patronymic = Convert.ToString(table.Rows[0][7]);
+            this.role = Convert.ToString(table.Rows[0][8]);
+
+            DB.connection.Close();
         }
 
+        //+
         public void setID(int ID) 
         {
             this.ID = ID;
         }
 
+        //+
         public void setRegFormInfo1(string loginAcc, string password) 
         {
             this.loginAcc = loginAcc;
             this.password = password;
         }
 
+        //+
         public void setRegFormInfo2(string name, string surname, string patronymic, string role) 
         {
             this.name = name;
@@ -83,36 +81,43 @@ namespace WindowsFormsApp1
             this.role = role;
         }
 
+        //+
         public int GetID()
         {
             return this.ID;
         }
 
+        //+
         public string GetLoginAcc()
         {
             return this.loginAcc;
         }
 
+        //+
         public string GetPassword()
         {
             return this.password;
         }
 
+        //+
         public string GetName()
         {
             return this.name;
         }
 
+        //+
         public string GetSurname()
         {
             return this.surname;
         }
 
+        //+
         public string GetPatronymic()
         {
             return this.patronymic;
         }
 
+        //+
         public string GetRole()
         {
             return this.role;

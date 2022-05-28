@@ -29,7 +29,7 @@ namespace WindowsFormsApp1
         }
 
         /// <summary>
-        /// \brief Конструктор для переопределения
+        /// \brief Переопределенный конструктор, принимающий класс SuperUser
         /// </summary>
         /// <param name="admin"></param>
         public RegForm1(SuperUser admin)
@@ -108,7 +108,7 @@ namespace WindowsFormsApp1
             if (admin.RegistrationForm1(newUser, DB))
             {
                 this.Hide();
-                RegForm2 regform = new RegForm2(newUser, DB, admin);
+                RegForm2 regform = new RegForm2(newUser, admin);
                 regform.Show();
             }
             else

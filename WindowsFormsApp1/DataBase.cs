@@ -17,7 +17,7 @@ namespace WindowsFormsApp1
         public MySqlCommand command3;
 
         /// <summary>
-        /// \brief Данный конструктор создает подключение к базе данных
+        /// \brief Конструктор с подключением к базе данных
         /// </summary>
         public DataBase()
         {
@@ -97,37 +97,22 @@ namespace WindowsFormsApp1
         /// <returns></returns>
         public string AdminOrUser(string login, string password) 
         {
-            string get_accaint_id_script = "SELECT account_id FROM Authorization WHERE login = @log" +
-                " AND password = @pass;";
+            string get_role_script = "select Users.role FROM Users JOIN Authorization " +
+                "ON Authorization.account_id = Users.account " +
+                "WHERE Authorization.login = @log AND Authorization.password = @pass;";
 
             connection.Open();
 
-            DataTable table = new DataTable();
-            MySqlDataAdapter adapter = new MySqlDataAdapter(get_accaint_id_script, connection);
-            command = new MySqlCommand(get_accaint_id_script, connection);
+            DataTable role_table = new DataTable();
+            MySqlDataAdapter role_adapter = new MySqlDataAdapter(get_role_script, connection);
+            command = new MySqlCommand(get_role_script, connection);
             command.Parameters.Add("@log", MySqlDbType.VarChar).Value = login;
             command.Parameters.Add("@pass", MySqlDbType.VarChar).Value = password;
 
-            adapter.SelectCommand = command;
-            adapter.Fill(table);
-
-            if (table.Rows.Count <= 0)
-            {
-                connection.Close();
-                return "User not found";
-            }
-
-            string get_role_script = "SELECT role FROM Users WHERE user_id = @ID;";
-
-            DataTable role_table = new DataTable();
-            MySqlDataAdapter role_adapter = new MySqlDataAdapter(get_role_script, connection);
-            command2 = new MySqlCommand(get_role_script, connection);
-            command2.Parameters.Add("@ID", MySqlDbType.VarChar).Value = Convert.ToString(table.Rows[0][0]);
-
-            role_adapter.SelectCommand = command2;
+            role_adapter.SelectCommand = command;
             role_adapter.Fill(role_table);
 
-            if (table.Rows.Count > 0)
+            if (role_table.Rows.Count > 0)
             {
                 connection.Close();
                 return Convert.ToString(role_table.Rows[0][0]);

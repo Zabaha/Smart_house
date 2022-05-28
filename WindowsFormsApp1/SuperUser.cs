@@ -10,10 +10,12 @@ namespace WindowsFormsApp1
 {
     public class SuperUser : User
     {
+        //+
         public SuperUser() : base()
         {
         }
 
+        //+
         public bool RegistrationForm1(User NewUser, DataBase DB)
         {
             string auth_script = "INSERT INTO Authorization (login, password) VALUES (@log, @pass);";
@@ -35,22 +37,33 @@ namespace WindowsFormsApp1
             }
         }
 
-        public bool RegistrationForm2(User NewUser, DataBase DB) 
+        //+
+        public bool RegistrationForm2(User NewUser) 
         {
-            string user_script = "INSERT INTO Users (user_id, account, familiya, imya, otchestvo, role)" +
-                " VALUES (@U, @A, @F, @I, @O, @R);";
-            string set_ID_script = "SELECT account_id FROM Authorization WHERE login = @log;";
+            DataBase DB = new DataBase();
+
             DB.connection.Open();
 
-            DB.command = new MySqlCommand(user_script, DB.connection);
+            string set_ID_script = "SELECT account_id FROM Authorization WHERE login = @log;";
 
-            DB.command2 = new MySqlCommand(set_ID_script, DB.connection);
-            DB.command2.Parameters.Add("@log", MySqlDbType.VarChar).Value = NewUser.GetLoginAcc();
+            DB.command = new MySqlCommand(set_ID_script, DB.connection);
+            DB.command.Parameters.Add("@log", MySqlDbType.VarChar).Value = NewUser.GetLoginAcc();
             DataTable table = new DataTable();
             MySqlDataAdapter adapter = new MySqlDataAdapter(set_ID_script, DB.connection);
-            adapter.SelectCommand = DB.command2;
+            adapter.SelectCommand = DB.command;
             adapter.Fill(table);
             NewUser.setID(Convert.ToInt32(table.Rows[0][0]));
+
+            if (DB.command.ExecuteNonQuery() != 1)
+            {
+                DB.connection.Close();
+                return false;
+            }
+
+            string user_script = "INSERT INTO Users (user_id, account, familiya, imya, otchestvo, role)" +
+                " VALUES (@U, @A, @F, @I, @O, @R);";
+
+            DB.command = new MySqlCommand(user_script, DB.connection);
 
             DB.command.Parameters.Add("@U", MySqlDbType.Int32).Value = NewUser.GetID();
             DB.command.Parameters.Add("@A", MySqlDbType.Int32).Value = NewUser.GetID();

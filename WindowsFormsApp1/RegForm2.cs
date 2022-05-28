@@ -14,16 +14,14 @@ namespace WindowsFormsApp1
     public partial class RegForm2 : Form
     {
         public User newUser = new User();
-        public DataBase DB = new DataBase();
         public SuperUser admin = new SuperUser();
 
         /// <summary>
         /// \brief Конструктор для второй экранной формы регистрации
         /// </summary>
         /// <param name="newUser"></param>
-        /// <param name="DB"></param>
         /// <param name="admin"></param>
-        public RegForm2(User newUser, DataBase DB, SuperUser admin)
+        public RegForm2(User newUser, SuperUser admin)
         {
             InitializeComponent();
             Ffield.Text = "Введите фамилию";
@@ -32,10 +30,9 @@ namespace WindowsFormsApp1
             Nfield.ForeColor = Color.Gray;
             Ofield.Text = "Введите отчество";
             Ofield.ForeColor = Color.Gray;
-            rolefield.Text = "Введите роль члена семьи";
+            rolefield.Text = "Введите роль";
             rolefield.ForeColor = Color.Gray;
             this.newUser = newUser;
-            this.DB = DB;
             this.admin = admin;
         }
 
@@ -95,7 +92,7 @@ namespace WindowsFormsApp1
 
         private void rolefield_Enter(object sender, EventArgs e)
         {
-            if (rolefield.Text == "Введите роль члена семьи")
+            if (rolefield.Text == "Введите роль")
             {
                 rolefield.Text = "";
                 rolefield.ForeColor = Color.Black;
@@ -106,7 +103,7 @@ namespace WindowsFormsApp1
         {
             if (rolefield.Text == "")
             {
-                rolefield.Text = "Введите роль члена семьи";
+                rolefield.Text = "Введите роль";
                 rolefield.ForeColor = Color.Gray;
             }
         }
@@ -133,7 +130,7 @@ namespace WindowsFormsApp1
 
             newUser.setRegFormInfo2(Nfield.Text, Ffield.Text, Ofield.Text, rolefield.Text);
 
-            if (admin.RegistrationForm2(newUser, DB))
+            if (admin.RegistrationForm2(newUser))
             {
                 if (admin.GetRole() == "Administrator")
                 {
