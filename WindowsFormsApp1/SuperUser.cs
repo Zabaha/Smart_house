@@ -54,12 +54,6 @@ namespace WindowsFormsApp1
             adapter.Fill(table);
             NewUser.setID(Convert.ToInt32(table.Rows[0][0]));
 
-            if (DB.command.ExecuteNonQuery() != 1)
-            {
-                DB.connection.Close();
-                return false;
-            }
-
             string user_script = "INSERT INTO Users (user_id, account, familiya, imya, otchestvo, role)" +
                 " VALUES (@U, @A, @F, @I, @O, @R);";
 
