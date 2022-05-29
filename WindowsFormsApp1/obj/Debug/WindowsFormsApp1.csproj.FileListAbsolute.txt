@@ -28,7 +28,6 @@ C:\Users\Даниил\Documents\Семестр 6\Прог инж\WindowsFormsApp
 C:\Users\Даниил\Documents\Семестр 6\Прог инж\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.AdminForm.resources
 C:\Users\Даниил\Documents\Семестр 6\Прог инж\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.DeviceForm.resources
 D:\university\6 semestr\Системная и прграммная инженерия\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.AssemblyReference.cache
-D:\university\6 semestr\Системная и прграммная инженерия\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe.config
 D:\university\6 semestr\Системная и прграммная инженерия\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.AdminForm.resources
 D:\university\6 semestr\Системная и прграммная инженерия\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.DeviceForm.resources
 D:\university\6 semestr\Системная и прграммная инженерия\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.RegForm2.resources
@@ -56,3 +55,12 @@ D:\university\6 semestr\Системная и прграммная инжене�
 D:\university\6 semestr\Системная и прграммная инженерия\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\System.Numerics.Vectors.dll
 D:\university\6 semestr\Системная и прграммная инженерия\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\MySql.Data.xml
 D:\university\6 semestr\Системная и прграммная инженерия\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CopyComplete
+D:\university\6 semestr\Системная и прграммная инженерия\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\Newtonsoft.Json.dll
+D:\university\6 semestr\Системная и прграммная инженерия\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\university\6 semestr\Системная и прграммная инженерия\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\System.Threading.Tasks.Extensions.dll
+D:\university\6 semestr\Системная и прграммная инженерия\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\Telegram.Bot.dll
+D:\university\6 semestr\Системная и прграммная инженерия\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\Newtonsoft.Json.xml
+D:\university\6 semestr\Системная и прграммная инженерия\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\university\6 semestr\Системная и прграммная инженерия\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\System.Threading.Tasks.Extensions.xml
+D:\university\6 semestr\Системная и прграммная инженерия\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\Telegram.Bot.xml
+D:\university\6 semestr\Системная и прграммная инженерия\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.SuggestedBindingRedirects.cache

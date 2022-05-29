@@ -17,7 +17,7 @@ namespace WindowsFormsApp1
         public SuperUser admin = new SuperUser();
 
         /// <summary>
-        /// \brief Конструктор для запуска экранной формы администратора 
+        /// \brief Конструктор для инициализации экранной формы администратора 
         /// </summary>
         /// <param name="admin"></param>
         public AdminForm(SuperUser admin)
@@ -26,6 +26,7 @@ namespace WindowsFormsApp1
             this.admin = admin;
         }
 
+        
         private void Registration_button_click(object sender, EventArgs e)
         {
             this.Hide();
@@ -33,25 +34,11 @@ namespace WindowsFormsApp1
             regform.Show();
         }
 
-        private void zapros_Click_1(object sender, EventArgs e)
+        private void Chat_Click(object sender, EventArgs e)
         {
-            /*try
-            {
-                string script = "SELECT * FROM ";
-                
-                DB.connection.Open();
-
-                MySqlDataAdapter ms_data = new MySqlDataAdapter(script, DB.connection);
-                DataTable table = new DataTable();
-                ms_data.Fill(table);
-                dgv.DataSource = table;
-                
-                DB.connection.Close();
-            }
-            catch
-            {
-                MessageBox.Show("Connection lost");
-            }*/
+            //this.Hide();
+            //Chat_form caht = new Chat_form();
+            //caht.Show();
         }
 
         private void button_clear_Click(object sender, EventArgs e)

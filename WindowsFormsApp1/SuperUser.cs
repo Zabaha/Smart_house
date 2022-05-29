@@ -10,12 +10,19 @@ namespace WindowsFormsApp1
 {
     public class SuperUser : User
     {
-        //+
+        /// <summary>
+        /// \brief Конструктор класса SuperUser, явно вызывающий конструктор базового класса User
+        /// </summary>
         public SuperUser() : base()
         {
         }
 
-        //+
+        /// <summary>
+        /// \brief Метод загружает в базу данных информацию, которую ввел пользоваетль в первой регистрационной форме
+        /// </summary>
+        /// <param name="NewUser"></param>
+        /// <param name="DB"></param>
+        /// <returns></returns>
         public bool RegistrationForm1(User NewUser, DataBase DB)
         {
             string auth_script = "INSERT INTO Authorization (login, password) VALUES (@log, @pass);";
@@ -37,7 +44,11 @@ namespace WindowsFormsApp1
             }
         }
 
-        //+
+        /// <summary>
+        /// \brief Метод загружает в базу данных информацию, которую ввел пользоваетль во второй регистрационной форме
+        /// </summary>
+        /// <param name="NewUser"></param>
+        /// <returns></returns>
         public bool RegistrationForm2(User NewUser) 
         {
             DataBase DB = new DataBase();
@@ -78,24 +89,23 @@ namespace WindowsFormsApp1
             }
         }
 
+        /// <summary>
+        /// \brief Метод загружает в базу данных информацию, которую ввел пользоваетль при добавлении нового устройства
+        /// </summary>
+        /// <param name="newDevice"></param>
+        /// <param name="DB"></param>
+        /// <returns></returns>
         public bool AddNewDevice(Devices newDevice, DataBase DB) 
         {
-            string script = "INSERT INTO Device (name, ON_OFF) VALUES (@n, @on);";
+            string script = "INSERT INTO Device (name, ON_OFF) VALUES (@n, @on_off);";
 
             DB.connection.Open();
 
             DB.command = new MySqlCommand(script, DB.connection);
 
             DB.command.Parameters.Add("@n", MySqlDbType.VarChar).Value = newDevice.getName();
+            DB.command.Parameters.Add("@on_off", MySqlDbType.Int16).Value = newDevice.getON_OFF();
 
-            if (newDevice.getON_OFF())
-            {
-                DB.command.Parameters.Add("@on", MySqlDbType.Int16).Value = newDevice.getON_OFF();
-            }
-            else
-            {
-                DB.command.Parameters.Add("@on", MySqlDbType.Int16).Value = newDevice.getON_OFF();
-            }
 
             if (DB.command.ExecuteNonQuery() == 1)
             {

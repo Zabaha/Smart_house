@@ -13,7 +13,6 @@ namespace WindowsFormsApp1
 {
     public partial class UserForm : Form
     {
-        public DataBase DB = new DataBase();
         public Devices device = new Devices();
         public User user = new User();
 
@@ -31,6 +30,7 @@ namespace WindowsFormsApp1
         {
             try
             {
+                DataBase DB = new DataBase();
                 Request request = new Request("запрос сформирован", "стандартный");
                 string helpVar = "";
 
@@ -49,9 +49,11 @@ namespace WindowsFormsApp1
                 request.setDevice(device.getID());
                 request.setUser(user.GetID());
                 request.setName(helpVar);
-                request.uploadToDB(DB);
+                request.uploadToDB();
 
-                device.DataDevice(request, DB);
+                device.DataDevice(request);
+
+                request.DelFinishedRequest();
             }
             catch
             {
@@ -87,7 +89,7 @@ namespace WindowsFormsApp1
                     device.setON_OFF(false);
                 }
 
-                device.UpdateDeviceInfo(DB);
+                device.UpdateDeviceInfo();
             }
             catch
             {
@@ -99,6 +101,7 @@ namespace WindowsFormsApp1
         {
             try
             {
+                DataBase DB = new DataBase();
                 dgv.DataSource = DB.getDevicesInfo();
             }
             catch

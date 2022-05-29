@@ -41,12 +41,12 @@ namespace WindowsFormsApp1
             // zapros
             // 
             this.zapros.Location = new System.Drawing.Point(12, 415);
-            this.zapros.Name = "zapros";
+            this.zapros.Name = "Chat";
             this.zapros.Size = new System.Drawing.Size(176, 57);
             this.zapros.TabIndex = 1;
-            this.zapros.Text = "Принять запрос";
+            this.zapros.Text = "Войти в чат";
             this.zapros.UseVisualStyleBackColor = true;
-            this.zapros.Click += new System.EventHandler(this.zapros_Click_1);
+            this.zapros.Click += new System.EventHandler(this.Chat_Click);
             // 
             // dgv
             // 

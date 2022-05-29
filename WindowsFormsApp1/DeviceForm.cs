@@ -14,6 +14,11 @@ namespace WindowsFormsApp1
     public partial class DeviceForm : Form
     {
         public SuperUser admin = new SuperUser();
+
+        /// <summary>
+        /// \brief Конструктор для инициализации экранной формы добавления устройства
+        /// </summary>
+        /// <param name="admin"></param>
         public DeviceForm(SuperUser admin)
         {
             InitializeComponent();

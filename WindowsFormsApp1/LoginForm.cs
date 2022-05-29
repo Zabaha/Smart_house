@@ -24,11 +24,6 @@ namespace WindowsFormsApp1
             this.loginfield.Size = new Size(this.passfield.Width, 48);
         }
 
-        /// <summary>
-        /// \brief Метод для кнопки входа. Данный метод включает в себя проверку на вход для администратора и пользователя, а также когда пользователь не найден
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void login_button_Click(object sender, EventArgs e)
         {
             DataBase DB = new DataBase();

@@ -13,8 +13,6 @@ namespace WindowsFormsApp1
     {
         public MySqlConnection connection;
         public MySqlCommand command;
-        public MySqlCommand command2;
-        public MySqlCommand command3;
 
         /// <summary>
         /// \brief Конструктор с подключением к базе данных
@@ -168,7 +166,6 @@ namespace WindowsFormsApp1
             findedDevice.setON_OFF(Convert.ToBoolean(table.Rows[0][4]));
 
             connection.Close();
-
 
             return findedDevice;
         }

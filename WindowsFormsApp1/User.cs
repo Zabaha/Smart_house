@@ -19,12 +19,18 @@ namespace WindowsFormsApp1
         protected string password;
         protected string loginAcc;
 
-        //+
+        /// <summary>
+        /// \brief Конструктор каласса User
+        /// </summary>
         public User() 
         {
         }
 
-        //+
+        /// <summary>
+        /// \brief Метод заполняет оъект класса User соответствующими данными из базы данных
+        /// <param name="login"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public void authorization(string login, string password)
         {
             string authorize_script = "SELECT * FROM Authorization, Users WHERE login = @log AND password = @pass;";
@@ -59,20 +65,33 @@ namespace WindowsFormsApp1
             DB.connection.Close();
         }
 
-        //+
+        /// <summary>
+        /// \brief Метод установки занчения параметру ID
+        /// </summary>
+        /// <param name="ID"></param>
         public void setID(int ID) 
         {
             this.ID = ID;
         }
 
-        //+
+        /// <summary>
+        /// \brief Метод установки занчения параметрам loginAcc и password, информация о которх получена в первой регистрауционной форме
+        /// </summary>
+        /// <param name="loginAcc"></param>
+        /// <param name="password"></param>
         public void setRegFormInfo1(string loginAcc, string password) 
         {
             this.loginAcc = loginAcc;
             this.password = password;
         }
 
-        //+
+        /// <summary>
+        /// \brief Метод установки занчения параметрам, информация о которх получена во второй регистрауционной форме
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="surname"></param>
+        /// <param name="patronymic"></param>
+        /// <param name="role"></param>
         public void setRegFormInfo2(string name, string surname, string patronymic, string role) 
         {
             this.name = name;
@@ -81,43 +100,64 @@ namespace WindowsFormsApp1
             this.role = role;
         }
 
-        //+
+        /// <summary>
+        /// \brief Метод для получения значения переменной ID
+        /// </summary>
+        /// <returns></returns>
         public int GetID()
         {
             return this.ID;
         }
 
-        //+
+        /// <summary>
+        /// \brief Метод для получения значения переменной loginAcc
+        /// </summary>
+        /// <returns></returns>
         public string GetLoginAcc()
         {
             return this.loginAcc;
         }
 
-        //+
+        /// <summary>
+        /// \brief Метод для получения значения переменной password
+        /// </summary>
+        /// <returns></returns>
         public string GetPassword()
         {
             return this.password;
         }
 
-        //+
+        /// <summary>
+        /// \brief Метод для получения значения переменной name
+        /// </summary>
+        /// <returns></returns>
         public string GetName()
         {
             return this.name;
         }
 
-        //+
+        /// <summary>
+        /// \brief Метод для получения значения переменной surname
+        /// </summary>
+        /// <returns></returns>
         public string GetSurname()
         {
             return this.surname;
         }
 
-        //+
+        /// <summary>
+        /// \brief Метод для получения значения переменной patronymic
+        /// </summary>
+        /// <returns></returns>
         public string GetPatronymic()
         {
             return this.patronymic;
         }
 
-        //+
+        /// <summary>
+        /// \brief Метод для получения значения переменной role
+        /// </summary>
+        /// <returns></returns>
         public string GetRole()
         {
             return this.role;

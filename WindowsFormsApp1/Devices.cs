@@ -77,6 +77,7 @@ namespace WindowsFormsApp1
         /// </summary>
         /// <param name="name"></param>
         /// <param name="ON_OFF"></param>
+        //+
         public void SetStartInfo(string name, bool ON_OFF) 
         {
             this.name = name;
@@ -88,8 +89,10 @@ namespace WindowsFormsApp1
         /// </summary>
         /// <param name="request"></param>
         /// <param name="DB"></param>
-        public void DataDevice(Request request, DataBase DB) 
+        //+
+        public void DataDevice(Request request) 
         {
+            DataBase DB = new DataBase();
             Random rnd = new Random();
 
             DB.connection.Open();
@@ -132,12 +135,12 @@ namespace WindowsFormsApp1
             string data_set_script = "UPDATE Device SET data = @data, status = @stat" +
                 " WHERE device_id = @ID;";
 
-            DB.command2 = new MySqlCommand(data_set_script, DB.connection);
-            DB.command2.Parameters.Add("@data", MySqlDbType.VarChar).Value = data;
-            DB.command2.Parameters.Add("@stat", MySqlDbType.VarChar).Value = status;
-            DB.command2.Parameters.Add("@ID", MySqlDbType.Int32).Value = ID;
+            DB.command = new MySqlCommand(data_set_script, DB.connection);
+            DB.command.Parameters.Add("@data", MySqlDbType.VarChar).Value = data;
+            DB.command.Parameters.Add("@stat", MySqlDbType.VarChar).Value = status;
+            DB.command.Parameters.Add("@ID", MySqlDbType.Int32).Value = ID;
 
-            if (DB.command2.ExecuteNonQuery() != 1)
+            if (DB.command.ExecuteNonQuery() != 1)
             {
                 DB.connection.Close();
                 return;
@@ -147,17 +150,19 @@ namespace WindowsFormsApp1
 
             request.setStatus("запрос обработан");
 
-            DB.command3 = new MySqlCommand(Starus_update_script2, DB.connection);
-            DB.command3.Parameters.Add("@s", MySqlDbType.VarChar).Value = request.getStatus();
-            DB.command3.Parameters.Add("@ID", MySqlDbType.Int32).Value = request.getID();
+            DB.command = new MySqlCommand(Starus_update_script2, DB.connection);
+            DB.command.Parameters.Add("@s", MySqlDbType.VarChar).Value = request.getStatus();
+            DB.command.Parameters.Add("@ID", MySqlDbType.Int32).Value = request.getID();
 
-            if (DB.command3.ExecuteNonQuery() == 1)
+            if (DB.command.ExecuteNonQuery() == 1)
             {
                 DB.connection.Close();
+                return;
             }
             else 
             {
                 DB.connection.Close();
+                MessageBox.Show("Статус запроса не обновлен");
                 return;
             }
         }
@@ -166,8 +171,9 @@ namespace WindowsFormsApp1
         /// \brief Метод изменения состояния устройства по его наименованию
         /// </summary>
         /// <param name="DB"></param>
-        public void UpdateDeviceInfo(DataBase DB)
+        public void UpdateDeviceInfo()
         {
+            DataBase DB = new DataBase();
 
             string script = "UPDATE Device SET ON_OFF = @ON_OFF WHERE device_id = @ID;";
 
@@ -177,9 +183,17 @@ namespace WindowsFormsApp1
             DB.command.Parameters.Add("@ID", MySqlDbType.Int32).Value = this.ID;
             DB.command.Parameters.Add("@ON_OFF", MySqlDbType.Int16).Value = this.ON_OFF;
 
-            DB.command.ExecuteNonQuery();
-
-            DB.connection.Close();
+            if (DB.command.ExecuteNonQuery() == 1)
+            {
+                DB.connection.Close();
+                return;
+            }
+            else
+            {
+                DB.connection.Close();
+                MessageBox.Show("Не получилось обновить данные девайса");
+                return;
+            }
         }
     }
 }
